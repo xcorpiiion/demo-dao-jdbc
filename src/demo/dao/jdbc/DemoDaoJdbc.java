@@ -5,6 +5,8 @@
  */
 package demo.dao.jdbc;
 
+import model.entities.Department;
+
 /**
  *
  * @author User
@@ -15,7 +17,8 @@ public class DemoDaoJdbc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Department department = new Department(1, "Livros");
+        System.out.println(department);
     }
     
 }
