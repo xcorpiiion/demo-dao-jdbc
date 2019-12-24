@@ -47,11 +47,17 @@ public class DemoDaoJdbc {
         
         System.out.println("-------------------------");
         
-        seller = new Seller(null, "Lucas", "lucas@gmail.com", new Date(), 2000.00, department);
-        sellerDao.insert(seller);
+        //seller = new Seller(null, "Lucas", "lucas@gmail.com", new Date(), 2000.00, department);
+        //sellerDao.insert(seller);
         
         System.out.println("Id: " + seller.getId());
         
+        System.out.println("-------------------------------------------------------------");
+        seller = sellerDao.findById(2);
+        seller.setName("Vergil");
+        seller.setEmail("vergilDMC@gmail.com");
+        sellerDao.update(seller);
+        System.out.println("Completo");
     }
 
 }
