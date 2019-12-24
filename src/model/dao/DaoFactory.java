@@ -5,10 +5,16 @@
  */
 package model.dao;
 
+import db.Database;
+import model.dao.implement.SellerDaoJDBC;
+
 /**
  *
  * @author User
  */
 public class DaoFactory {
+    public static SellerDao createSellerDao(){
+        return new SellerDaoJDBC(Database.getConnection());
+    }
     
 }

@@ -8,6 +8,8 @@ package demo.dao.jdbc;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -21,10 +23,9 @@ public class DemoDaoJdbc {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Department department = new Department(1, "Livros");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SellerDao sellerDao = DaoFactory.createSellerDao();
         
-        Seller seller = new Seller(21, "Lucas", "lucas@gmail.com",  new Date(),  2000.00, department);
+        Seller seller = sellerDao.findById(3);
         
         System.out.println(seller);
     }
