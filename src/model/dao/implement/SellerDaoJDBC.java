@@ -10,6 +10,7 @@ import db.DbException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +32,37 @@ public class SellerDaoJDBC implements SellerDao {
     }
 
     @Override
-    public void insert(Seller departament) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insert(Seller seller) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = Connection.prepareStatement("insert into seller(Name, Email, BirthDate, BaseSalary, DepartmentId) "
+                    + "values (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, seller.getName());
+            preparedStatement.setString(2, seller.getEmail());
+            preparedStatement.setDate(3, new java.sql.Date(seller.getDataNascimento().getTime()));
+            preparedStatement.setDouble(4, seller.getSalarioBase());
+            preparedStatement.setInt(5, seller.getDepartment().getId());
+            
+            int linhasAfetadas = preparedStatement.executeUpdate();
+            
+            if(linhasAfetadas > 0){
+                ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                if(preparedStatement == null) {
+                    int id = resultSet.getInt(1);
+                    seller.setId(id);
+                    
+                }
+                Database.fecharResultSet(resultSet);
+            } else{
+                throw  new DbException("Erro inesperado, nenhuma linha foi afetada");
+            }
+            
+        } catch (Exception e) {
+            throw new DbException(e.getMessage());
+        } finally{
+            Database.fecharStatement(preparedStatement);
+            
+        }
     }
 
     @Override

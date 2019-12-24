@@ -45,6 +45,13 @@ public class DemoDaoJdbc {
             System.out.println(sellers);
         }
         
+        System.out.println("-------------------------");
+        
+        seller = new Seller(null, "Lucas", "lucas@gmail.com", new Date(), 2000.00, department);
+        sellerDao.insert(seller);
+        
+        System.out.println("Id: " + seller.getId());
+        
     }
 
 }
