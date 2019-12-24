@@ -5,9 +5,9 @@
  */
 package demo.dao.jdbc;
 
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
 import model.entities.Department;
@@ -24,10 +24,18 @@ public class DemoDaoJdbc {
      */
     public static void main(String[] args) {
         SellerDao sellerDao = DaoFactory.createSellerDao();
-        
+
         Seller seller = sellerDao.findById(3);
-        
+
         System.out.println(seller);
+        System.out.println("----------------------------");
+
+        Department department = new Department(2, null);
+        List<Seller> listSellers = sellerDao.findByDeparment(department);
+
+        for (Seller sellers : listSellers) {
+            System.out.println(sellers);
+        }
     }
-    
+
 }
