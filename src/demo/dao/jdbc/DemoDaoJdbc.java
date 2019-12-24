@@ -36,6 +36,15 @@ public class DemoDaoJdbc {
         for (Seller sellers : listSellers) {
             System.out.println(sellers);
         }
+        
+        System.out.println("--------------------------------");
+        
+        listSellers = sellerDao.findAll();
+
+        for (Seller sellers : listSellers) {
+            System.out.println(sellers);
+        }
+        
     }
 
 }
