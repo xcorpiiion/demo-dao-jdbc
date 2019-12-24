@@ -5,7 +5,11 @@
  */
 package demo.dao.jdbc;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import model.entities.Department;
+import model.entities.Seller;
 
 /**
  *
@@ -18,7 +22,11 @@ public class DemoDaoJdbc {
      */
     public static void main(String[] args) {
         Department department = new Department(1, "Livros");
-        System.out.println(department);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Seller seller = new Seller(21, "Lucas", "lucas@gmail.com",  new Date(),  2000.00, department);
+        
+        System.out.println(seller);
     }
     
 }
